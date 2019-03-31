@@ -1,0 +1,52 @@
+<link rel="stylesheet" type="text/css"
+	href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.4.0/css/font-awesome.css">
+<link href='https://fonts.googleapis.com/css?family=Roboto:400,700,500' rel='stylesheet' type='text/css'>
+
+
+
+
+<div id="container">
+	<h1 class="head rtl">קריאה חדשה</h1>
+
+	<input type="text" #company class=" rtl right" placeholder="חברה" name="company" ngModel>
+
+	<input type="text" #name class="rtl right" placeholder="שם לקוח" name="name" ngModel>
+
+	<input type="text" #phone class=" rtl right" placeholder="טלפון" name="phone" ngModel>
+
+	<textarea type="text" #description name="description" class="rtl right" cols="30" rows="10" placeholder="תיאור "
+		ngModel></textarea>
+	<button class="head right"
+		(click)="new(company.value,name.value,phone.value,description.value);company.value='';name.value='';phone.value='';description.value='';">הוסף</button>
+
+
+	<table class="table table-hover table-sm list1 rtl">
+		<thead>
+			<tr class="table-light " data-toggle="collapse">
+				<th>תאריך</th>
+				<th>טלפון</th>
+				<th>שם לקוח</th>
+				<th>שם חברה</th>
+
+			</tr>
+		</thead>
+		<tbody *ngFor="let li of list">
+			<tr class="table-light list1" data-toggle="collapse">
+				<td data-toggle="collapse" [attr.data-target]="'#' + li.id"><i class="left fa fa-trash"
+						(click)="delete(li.id)"></i>{{jstoday}}</td>
+				<td data-toggle="collapse" [attr.data-target]="'#' + li.id">{{li.tel}}</td>
+				<td data-toggle="collapse" [attr.data-target]="'#' + li.id">{{li.name}}</td>
+				<td data-toggle="collapse" [attr.data-target]="'#' + li.id">{{li.company}}</td>
+			</tr>
+
+			<tr class="collapse accordion-toggle Ccollapse" [attr.id]="li.id">
+				<td colspan="5">
+					<pre>{{li.details}}</pre>
+				</td>
+			</tr>
+
+
+		</tbody>
+	</table>
+
+</div>
